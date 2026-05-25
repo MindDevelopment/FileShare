@@ -1,0 +1,23 @@
+{
+  "name": "fileshare",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "build": "npm run build -w packages/shared && npm run build -w packages/database && npm run build -w packages/ui && npm run build -w apps/api && npm run build -w apps/web",
+    "lint": "turbo run lint",
+    "db:generate": "npm run db:generate -w packages/database",
+    "db:push": "npm run db:push -w packages/database",
+    "db:studio": "npm run db:studio -w packages/database"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.0"
+  }
+}
